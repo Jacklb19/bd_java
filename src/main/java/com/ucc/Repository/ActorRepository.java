@@ -63,7 +63,7 @@ public class ActorRepository implements IRepository {
 
                     try (ResultSet rs = myPrepare.getGeneratedKeys()) {
                         if (rs.next()) {
-                            actor.setActor_id(rs.getInt(1   ));
+                            actor.setActor_id(rs.getInt(1));
                         }
                     }
                 }
@@ -83,9 +83,33 @@ public class ActorRepository implements IRepository {
 
             int rows = myPrepare.executeUpdate();
             return rows > 0;
-            
+
         } catch (Exception e) {
             // TODO: handle exception
-        }return false;
+        }
+        return false;
+    }
+
+    @Override
+    public Actor getActorbyId(int actor_id) {
+        Actor actor = null;
+        String sql = "SELECT actor_id, first_name, last_name FROM sakila.actor WHERE actor_id = ?";
+        try (PreparedStatement myPrepare = getConnection().prepareStatement(sql)) {
+
+            myPrepare.setInt(1, actor_id);
+
+            try (ResultSet rs = myPrepare.executeQuery()) {
+                if (rs.next()) {
+                    actor = new Actor();
+                    actor.setActor_id(rs.getInt("actor_id"));
+                    actor.setFirst_name(rs.getString("first_name"));
+                    actor.setLast_name(rs.getString("last_name"));
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al obtener actor por ID: " + e.getMessage());
+        }
+        return actor;
     }
 }

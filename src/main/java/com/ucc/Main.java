@@ -21,9 +21,10 @@ public class Main {
             actor.setLast_name("null");
 
             IRepository repository = new ActorRepository();
-            repository.deleteActor(301);
-            repository.findAll().forEach(System.out::println);
-            
+            //repository.deleteActor(301);
+            Actor actor2 = repository.getActorbyId(200);
+            //repository.findAll().forEach(System.out::println);
+            System.out.println(actor2);
 
         } catch (Exception e) {
             System.out.println("Conexasion Fail");

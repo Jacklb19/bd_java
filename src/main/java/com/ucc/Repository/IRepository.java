@@ -8,6 +8,6 @@ public interface IRepository {
     List<Actor> findAll(); 
     Actor saveAndUpdateActor(Actor actor);
     boolean deleteActor(int actor_id);
-    //getById only one actor
+    Actor getActorbyId(int actor_id);
 
 }
