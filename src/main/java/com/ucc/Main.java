@@ -21,7 +21,7 @@ public class Main {
             actor.setLast_name("null");
 
             IRepository repository = new ActorRepository();
-            repository.saveAndUpdateActor(actor);
+            repository.deleteActor(301);
             repository.findAll().forEach(System.out::println);
             
 

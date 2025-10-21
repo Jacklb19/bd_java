@@ -73,4 +73,19 @@ public class ActorRepository implements IRepository {
         }
         return actor;
     }
+
+    @Override
+    public boolean deleteActor(int actor_id) {
+        String deleteSql = "DELETE FROM sakila.actor WHERE actor_id = ?";
+        try (PreparedStatement myPrepare = getConnection().prepareStatement(deleteSql)) {
+
+            myPrepare.setInt(1, actor_id);
+
+            int rows = myPrepare.executeUpdate();
+            return rows > 0;
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+        }return false;
+    }
 }
