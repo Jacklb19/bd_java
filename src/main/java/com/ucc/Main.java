@@ -7,19 +7,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.ucc.Connection.DatabaseConnection;
+import com.ucc.Repository.ActorRepository;
+import com.ucc.Repository.IRepository;
 
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        try(Connection myConn = DatabaseConnection.getInstanceConnection();
-            Statement myStat = myConn.createStatement();
-            ResultSet myRes= myStat.executeQuery("Select * from sakila.actor");
-            ){
+        try(Connection myConn = DatabaseConnection.getInstanceConnection()){
 
-            while (myRes.next()) {
-                System.out.println(myRes.getString("first_name")
-                +" "+ myRes.getString("last_name"));
-            }
+            IRepository repository = new ActorRepository();
+            repository.findAll().forEach(System.out::println);
 
         } catch (Exception e) {
             System.out.println("Conexion Fail");
