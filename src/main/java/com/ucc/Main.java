@@ -17,6 +17,7 @@ public class Main {
         try(Connection myConn = DatabaseConnection.getInstanceConnection()){
 
             Actor actor = new Actor();
+            actor.setActor_id(300);
             actor.setFirst_name("null");
             actor.setLast_name("null");
 

@@ -27,6 +27,7 @@ public class ActorRepository implements IRepository{
         ) {
                  while (myRes.next()) {
                 Actor newActor = new Actor();
+                newActor.setActor_id(myRes.getInt("actor_id"));
                 newActor.setFirst_name(myRes.getString("first_name"));
                 newActor.setLast_name(myRes.getString("last_name"));
                 Actors.add(newActor); 
@@ -36,13 +37,16 @@ public class ActorRepository implements IRepository{
         return Actors;
     }
 
+    ///// meter el update junto con el save 
+    
     @Override
     public Actor save(Actor actor) {
-        String sql = "INSERT INTO sakila.actor(first_name, last_name) VALUES (?,?)";
+        String sql = "INSERT INTO sakila.actor(actor_id,first_name, last_name) VALUES (?,?,?)";
         try (PreparedStatement myPrepare = getConnection().prepareStatement(sql);) {
 
-            myPrepare.setString(1, actor.getFirst_name());
-            myPrepare.setString(2, actor.getLast_name());
+            myPrepare.setInt(1, actor.getActor_id());
+            myPrepare.setString(2, actor.getFirst_name());
+            myPrepare.setString(3, actor.getLast_name());
             
             myPrepare.executeUpdate();
             

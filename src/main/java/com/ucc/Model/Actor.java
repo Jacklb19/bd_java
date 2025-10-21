@@ -1,11 +1,11 @@
 package com.ucc.Model;
 
 public class Actor {
-    private Long actor_id;
+    private int actor_id;
     private String first_name;
     private String last_name;
 
-    public Actor(Long actor_id, String first_name, String last_name) {
+    public Actor(int actor_id, String first_name, String last_name) {
         this.actor_id = actor_id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -15,7 +15,7 @@ public class Actor {
         //TODO Auto-generated constructor stub
     }
 
-    public Long getActor_id() {
+    public int getActor_id() {
         return actor_id;
     }
 
@@ -37,7 +37,11 @@ public class Actor {
 
     @Override
     public String toString() {
-        return "first_name=" + first_name + " last_name=" + last_name + "]";
+        return "actor_id "+ actor_id +" first_name=" + first_name + " last_name=" + last_name + "]";
+    }
+
+    public void setActor_id(int actor_id) {
+        this.actor_id = actor_id;
     }
     
     

@@ -7,4 +7,8 @@ import com.ucc.Model.Actor;
 public interface IRepository {
     List<Actor> findAll(); 
     Actor save(Actor actor);
+    //update
+    //delete
+    //getById only one actor
+
 }
