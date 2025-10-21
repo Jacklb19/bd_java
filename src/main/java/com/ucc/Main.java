@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.ucc.Connection.DatabaseConnection;
+
+
 public class Main {
     public static void main(String[] args) throws SQLException {
-        String url = "jdbc:mysql://localhost:3306";
-        String user = "root";
-        String password = "root";
-        try(Connection myConn = DriverManager.getConnection(url, user, password);
+        try(Connection myConn = DatabaseConnection.getInstanceConnection();
             Statement myStat = myConn.createStatement();
             ResultSet myRes= myStat.executeQuery("Select * from sakila.actor");
             ){
