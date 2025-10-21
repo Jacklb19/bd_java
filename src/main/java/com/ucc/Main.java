@@ -17,17 +17,16 @@ public class Main {
         try(Connection myConn = DatabaseConnection.getInstanceConnection()){
 
             Actor actor = new Actor();
-            actor.setActor_id(300);
-            actor.setFirst_name("null");
+            actor.setFirst_name("asdf");
             actor.setLast_name("null");
 
             IRepository repository = new ActorRepository();
-            repository.save(actor);
+            repository.saveAndUpdateActor(actor);
             repository.findAll().forEach(System.out::println);
             
 
         } catch (Exception e) {
-            System.out.println("Conexion Fail");
+            System.out.println("Conexasion Fail");
         } 
     }
 }   
