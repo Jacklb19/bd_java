@@ -1,6 +1,7 @@
 package com.ucc.Repository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,7 +38,18 @@ public class ActorRepository implements IRepository{
 
     @Override
     public Actor save(Actor actor) {
-        return null;
+        String sql = "INSERT INTO sakila.actor(first_name, last_name) VALUES (?,?)";
+        try (PreparedStatement myPrepare = getConnection().prepareStatement(sql);) {
+
+            myPrepare.setString(1, actor.getFirst_name());
+            myPrepare.setString(2, actor.getLast_name());
+            
+            myPrepare.executeUpdate();
+            
+        } catch (Exception e) {
+            System.out.println("Conexion Fail");
+        }
+        return actor;
     }
     
 }
